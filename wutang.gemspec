@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Wutang::VERSION
   spec.authors       = ["Justin Mazzi"]
   spec.email         = ["jmazzi@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{An experimental command line password manager}
+  spec.summary       = %q{An experimental command line password manager}
   spec.homepage      = ""
   spec.license       = "MIT"
 
