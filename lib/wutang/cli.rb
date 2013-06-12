@@ -1,6 +1,6 @@
 module Wutang
   class Cli
-    PUBLIC_COMMANDS = [:create, :udpate, :search, :list]
+    PUBLIC_COMMANDS = [:create, :update, :search, :list]
     attr_reader :command, :args, :wutang
 
     def initialize(wutang)

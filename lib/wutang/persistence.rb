@@ -3,8 +3,9 @@ module Wutang
     attr_reader :path, :crypto
 
     def initialize(path, passphrase)
-      @path   = path
+      @path   = File.expand_path(path)
       @crypto = Encryption.new(passphrase)
+      Dir.mkdir(@path) unless File.exists?(@path)
     end
 
     def read(filename)
