@@ -3,9 +3,6 @@ $:.unshift(File.join(File.dirname(__FILE__), "/../lib"))
 
 require 'wutang'
 
-path   = File.join(ENV['HOME'], '.wutang')
-Dir.mkdir(path) unless File.exists?(path)
-
-wutang = Wutang::Interface.new(path, 'mad secret')
-cli    = Wutang::Cli.new(wutang)
+interface = Wutang::Interface.new
+cli       = Wutang::Cli.new(interface)
 cli.handle

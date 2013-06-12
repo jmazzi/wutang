@@ -1,9 +1,13 @@
 module Wutang
   class Interface
-    attr_reader :persistence
+    attr_reader :persistence, :config
 
-    def initialize(path, passphrase)
-      @persistence = Persistence.new(path, passphrase)
+    def initialize
+      @config = Config.new.attributes
+    end
+
+    def persistence
+      @persistence ||= Persistence.new(config['path'], config['passphrase'])
     end
 
     def entries
