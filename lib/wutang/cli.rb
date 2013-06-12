@@ -3,31 +3,40 @@ module Wutang
     attr_reader :command, :args, :wutang
 
     def initialize(wutang)
-      @command = ARGV.shift.to_sym
+      @command = ARGV.shift.to_s.to_sym
       @args    = ARGV
       @wutang  = wutang
     end
 
     def handle
-      case command
-      when :create
-        entry = wutang.create attributes
-        puts "Created #{entry}"
-      when :update
-        if entry = wutang.find(args.shift)
-          wutang.update entry, attributes
-          puts "Entry updated with the following changes: #{attributes}"
-        else
-          puts "Entry not found"
-        end
-      when :search
-        criteria = args.shift
-        puts wutang.search criteria
-      when :list
-        puts wutang.entries
+      if respond_to?(command)
+        send(command)
       else
         puts "Unknown command #{command}"
       end
+    end
+
+    def create
+      entry = wutang.create attributes
+      puts "Created #{entry}"
+    end
+
+    def update
+      if entry = wutang.find(args.shift)
+        wutang.update entry, attributes
+        puts "Entry updated with the following changes: #{attributes}"
+      else
+        puts "Entry not found"
+      end
+    end
+
+    def search
+      criteria = args.shift
+      puts wutang.search criteria
+    end
+
+    def list
+      puts wutang.entries
     end
 
     def attributes
