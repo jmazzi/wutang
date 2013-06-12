@@ -1,5 +1,6 @@
 module Wutang
   class Cli
+    PUBLIC_COMMANDS = [:create, :udpate, :search, :list]
     attr_reader :command, :args, :wutang
 
     def initialize(wutang)
@@ -9,7 +10,7 @@ module Wutang
     end
 
     def handle
-      if respond_to?(command)
+      if PUBLIC_COMMANDS.include?(command)
         send(command)
       else
         puts "Unknown command #{command}"
